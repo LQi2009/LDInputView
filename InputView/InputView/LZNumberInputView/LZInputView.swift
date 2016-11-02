@@ -31,6 +31,7 @@ class LZInputView: UIView, UITextFieldDelegate {
     private var textField: UITextField!
     private var countLabel: UILabel!
     private var maskingView: UIView!
+    private var subBgView: UIView!
 //    var result: backBlock?
     
     
@@ -62,6 +63,32 @@ class LZInputView: UIView, UITextFieldDelegate {
     func dismiss() {
         
         self.endEditing(true)
+    }
+    
+    // 重置: 清空数组,重置视图
+    func resetInput() {
+        
+        self.inputs.removeAll()
+        for label in showLabels {
+            
+            label.text = ""
+        }
+    }
+    
+    func shake() {
+        
+        let kfa = CAKeyframeAnimation.init(keyPath: "transform.translation.x")
+        
+        let s: CGFloat = 5.0
+        
+        kfa.values = [-s, 0, s, 0, -s, 0, s, 0]
+        
+        kfa.duration = 0.3
+        
+        kfa.repeatCount = 2
+        kfa.isRemovedOnCompletion = true
+        
+        subBgView.layer.add(kfa, forKey: "shake")
     }
     
 //    func getResult(_ result: @escaping backBlock) {
@@ -119,15 +146,7 @@ class LZInputView: UIView, UITextFieldDelegate {
             self.resetInput()
         })
     }
-    // 重置: 清空数组,重置视图
-    func resetInput() {
-        
-        self.inputs.removeAll()
-        for label in showLabels {
-            
-            label.text = ""
-        }
-    }
+    
     
     private func setupMain() {
         
@@ -185,7 +204,7 @@ class LZInputView: UIView, UITextFieldDelegate {
         
         
         let leftMargin: CGFloat = 30.0
-        let subBgView = UIView.init()
+        subBgView = UIView.init()
         subBgView.backgroundColor = UIColor.gray
         subBgView.frame = CGRect.init(x: 30, y: countLabel.frame.maxY + 4, width: self.frame.width - leftMargin*2, height: 40)
         bgView.addSubview(subBgView)

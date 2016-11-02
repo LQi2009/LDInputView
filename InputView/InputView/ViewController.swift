@@ -28,7 +28,7 @@ class ViewController: UIViewController, LZInputViewDelegate {
         label.textAlignment = .center
         label.backgroundColor = UIColor.green
         self.view.addSubview(label)
-        
+        label.text = "密码为: 223366"
         input.delegate = self
         input.count = "20000"
     }
@@ -46,8 +46,15 @@ class ViewController: UIViewController, LZInputViewDelegate {
     func inputView(_ view: LZInputView, didEndInput result: String) {
         
         print(result)
-        label.text = "您输入的密码为\(result)"
-        view.dismiss()
+        
+//        view.dismiss()
+        if result == "223366" {
+            view.dismiss()
+            label.text = "您输入的密码为\(result),输入正确"
+        } else {
+            view.shake()
+            view.resetInput()
+        }
     }
 
 }

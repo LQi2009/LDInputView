@@ -27,4 +27,4 @@ func inputView(_ view: LZInputView, didEndInput result: String)
 
 demo中有具体是使用方法;
 这里给出图片效果:<br>
-![效果图](https://github.com/LQQZYY/LZInputView/blob/master/创建文件1.gif)
+![效果图](https://github.com/LQQZYY/LZInputView/blob/master/示例图.gif)

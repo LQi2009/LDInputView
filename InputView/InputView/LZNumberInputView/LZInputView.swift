@@ -30,6 +30,7 @@ class LZInputView: UIView, UITextFieldDelegate {
     private var showLabels: [UILabel] = []
     private var textField: UITextField!
     private var countLabel: UILabel!
+    private var maskingView: UIView!
 //    var result: backBlock?
     
     
@@ -44,8 +45,7 @@ class LZInputView: UIView, UITextFieldDelegate {
         
         self.frame = UIScreen.main.bounds
         
-        self.backgroundColor = UIColor.black
-        self.alpha = 0.6
+        self.backgroundColor = UIColor.clear
         
         self.setupMain()
         
@@ -56,7 +56,7 @@ class LZInputView: UIView, UITextFieldDelegate {
         
         view.addSubview(self)
         self.textField.becomeFirstResponder()
-        self.alpha = 0.6
+        self.maskingView.alpha = 0.6
     }
     
     func dismiss() {
@@ -111,7 +111,7 @@ class LZInputView: UIView, UITextFieldDelegate {
         UIView.animate(withDuration: TimeInterval(interval), delay: 0, options: UIViewAnimationOptions(rawValue: raw), animations: {
             
             self.bgView.frame = frame
-            self.alpha = 0
+            self.maskingView.alpha = 0
             
         }, completion: { end in
             // 键盘消失后移除, 重置
@@ -130,6 +130,12 @@ class LZInputView: UIView, UITextFieldDelegate {
     }
     
     private func setupMain() {
+        
+        maskingView = UIView.init()
+        maskingView.frame = self.bounds
+        maskingView.backgroundColor = UIColor.black
+        maskingView.alpha = 0.6
+        self.addSubview(maskingView)
         
         bgView.backgroundColor = UIColor.white
         bgView.frame = CGRect.init(x: 0, y: self.frame.height, width: self.frame.width, height: inputViewHeight)

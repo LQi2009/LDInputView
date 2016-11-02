@@ -77,6 +77,8 @@ class LZInputView: UIView, UITextFieldDelegate {
     
     func shake() {
         
+        self.resetInput()
+        
         let kfa = CAKeyframeAnimation.init(keyPath: "transform.translation.x")
         
         let s: CGFloat = 5.0
@@ -170,7 +172,7 @@ class LZInputView: UIView, UITextFieldDelegate {
         
         
         let titleLabel = UILabel.init()
-        titleLabel.text = "Please input verification code"
+        titleLabel.text = "请输入密码"
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = UIColor.green
         titleLabel.textAlignment = .center

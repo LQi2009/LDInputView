@@ -47,7 +47,6 @@ class ViewController: UIViewController, LZInputViewDelegate {
         
         print(result)
         
-//        view.dismiss()
         if result == "223366" {
             view.dismiss()
             label.text = "您输入的密码为\(result),输入正确"
